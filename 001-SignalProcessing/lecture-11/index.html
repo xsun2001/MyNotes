@@ -1,0 +1,768 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="@xsun2001">
+      
+      
+        <link rel="canonical" href="https://xsun.io/MyNotes/001-SignalProcessing/lecture-11/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Lecture 11 - xsun2001's note collection</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-11" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="xsun2001&#39;s note collection" class="md-header__button md-logo" aria-label="xsun2001's note collection" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            xsun2001's note collection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 11
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xsun2001/MyNotes/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="xsun2001&#39;s note collection" class="md-nav__button md-logo" aria-label="xsun2001's note collection" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    xsun2001's note collection
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xsun2001/MyNotes/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          001 SignalProcessing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="001 SignalProcessing" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          001 SignalProcessing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        001-SignalProcessing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 11
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 11
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    快速傅立叶变换
+  </a>
+  
+    <nav class="md-nav" aria-label="快速傅立叶变换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dit-fft" class="md-nav__link">
+    DIT FFT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dif-fft" class="md-nav__link">
+    DIF FFT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fft" class="md-nav__link">
+    卷积的快速运算：FFT的应用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    改进方法
+  </a>
+  
+    <nav class="md-nav" aria-label="改进方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    重叠相加法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    重叠保留法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    快速傅立叶变换
+  </a>
+  
+    <nav class="md-nav" aria-label="快速傅立叶变换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dit-fft" class="md-nav__link">
+    DIT FFT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dif-fft" class="md-nav__link">
+    DIF FFT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fft" class="md-nav__link">
+    卷积的快速运算：FFT的应用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    改进方法
+  </a>
+  
+    <nav class="md-nav" aria-label="改进方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    重叠相加法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    重叠保留法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/xsun2001/MyNotes/edit/master/docs/001-SignalProcessing/lecture-11.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="lecture-11">Lecture 11</h1>
+<h2 id="_1">快速傅立叶变换</h2>
+<p>首先考虑2点DFT：</p>
+<div class="arithmatex">\[ X(k) = \sum_{n=0}^1 x(n)W_2^{nk} = x(0)W_2^{0k} + x(1)W_2^{1k} \]</div>
+<p>因此：</p>
+<div class="arithmatex">\[ \begin{cases}
+X(0) &amp;= x(0) + x(1) \\
+X(1) &amp;= x(0) - x(1)
+\end{cases} \]</div>
+<p>我们发现2点DFT只需要做两次加减法即可。</p>
+<p>再来看4点DFT：</p>
+<div class="arithmatex">\[ \begin{align}
+X(k) &amp;= \sum_{n=0}^3 x(n)W_4^{nk} \\
+&amp;= x(0)W_4^{0k} + x(1)W_4^{1k} + x(2)W_4^{2k} + x(3)W_4^{3k} \\
+&amp;= [x(0)+x(2)(-1)^k] + [x(1)+x(3)(-1)^k]W_4^{1k} \\
+&amp;= [x_e(0)+x_e(1)(-1)^k] + [x_o(0)+x_o(1)(-1)^k]W_4^{1k}
+\end{align} \]</div>
+<p>其中<span class="arithmatex">\(x_e,x_o\)</span>代表偶数位置和奇数位置的项：<span class="arithmatex">\(x_e(n)=x(2n), x_o(n)=x(2n+1)\)</span>。</p>
+<p>我们发现，4点DFT实际上是两个2点DFT的线性组合。对于8点DFT也存在这样的性质：</p>
+<div class="arithmatex">\[ \mathbf{DFT}_8[x(n)] = \mathbf{DFT}_4[x_e(n)] + W_8^{1k}\mathbf{DFT}_4[x_o(n)] \]</div>
+<p>将原来的<span class="arithmatex">\(N\)</span>点DFT分解为<span class="arithmatex">\(M=2^m\)</span>个短DFT，这样的分解后的总DFT复杂度为<span class="arithmatex">\(M(\frac{N}{M})^2=\frac{N^2}{M}\)</span>，如果<span class="arithmatex">\(N\)</span>为2的幂，那么完全分解后得到的最优复杂度为<span class="arithmatex">\(N\)</span>，再加上至多<span class="arithmatex">\(NM\)</span>次的拼接组合，最终复杂度约为<span class="arithmatex">\(N\log_2(N)\)</span>，显著优于原始的<span class="arithmatex">\(N^2\)</span>计算方法。这就是快速傅立叶变换FFT的核心思想。</p>
+<p>点数为2的幂的DFT被称为<strong>基2FFT</strong>，有两种计算方法，分别为：</p>
+<ul>
+<li>按时间抽取/DIT/Decimation-In-Time</li>
+<li>按频率抽取/DIF/Decimation-In-Frequency</li>
+</ul>
+<h3 id="dit-fft">DIT FFT</h3>
+<p>将原序列拆分为偶序列<span class="arithmatex">\(x_1(n)=x(2n)\)</span>和奇序列<span class="arithmatex">\(x_2(n)=x(2n+1)\)</span>，设其DFT分别为<span class="arithmatex">\(X_1(k),X_2(k)\)</span>。那么原序列的DFT为：</p>
+<div class="arithmatex">\[ \begin{align}
+X(k) &amp;= X_1(k) + W_N^kX_2(k) \\
+X(k+\frac{N}{2}) &amp;= X_1(k) - W_N^kX_2(k) \\
+&amp;k=0,1,\cdots,\frac{N}{2}-1
+\end{align} \]</div>
+<p>注意下半段计算时<span class="arithmatex">\(X_2\)</span>的符号。这种运算又称蝶形运算。对于长度为<span class="arithmatex">\(N=2^M\)</span>的序列，共需要分解为<span class="arithmatex">\(MN/2\)</span>个蝶形，<span class="arithmatex">\(MN/2\)</span>次复数乘法，<span class="arithmatex">\(MN\)</span>次复数加法。</p>
+<p><strong>旋转因子</strong>：第<span class="arithmatex">\(m\)</span>级蝶形需要<span class="arithmatex">\(2^{m-1}\)</span>个旋转因子，分别为：</p>
+<div class="arithmatex">\[W_N^r, r=2^{M-m}\cdot i, i=0,1,\cdots 2^{m-1}-1\]</div>
+<p>实际上相当于将内层的短DFT的旋转因子都统一到<span class="arithmatex">\(W_N\)</span>的形式。</p>
+<p><strong>输入位倒序</strong>：在蝴蝶图上，<span class="arithmatex">\(X(k)\)</span>所对应的序列值<span class="arithmatex">\(x(k')\)</span>满足<span class="arithmatex">\(k'\)</span>为<span class="arithmatex">\(k\)</span>的二进制位倒序的关系。如<span class="arithmatex">\(k=3=(011)_2\Rightarrow k'=(110)_2=6\)</span>。</p>
+<h3 id="dif-fft">DIF FFT</h3>
+<p>实际上相当于DIT方法的反相操作，即将原序列分为前后两半，然后通过两个<span class="arithmatex">\(N/2\)</span>点DFT分别求出原序列奇偶位置的DFT值。这两种方法互为转置。</p>
+<h2 id="fft">卷积的快速运算：FFT的应用</h2>
+<p>经典的线卷积计算方法需要约<span class="arithmatex">\(LM\)</span>次乘法运算。我们发现，若圆卷积的点数<span class="arithmatex">\(N\geqslant L+M-1\)</span>时，那么圆卷积和线卷积的值是相同的。而我们又知道，序列的圆卷积可以通过IDFT求得，即：</p>
+<div class="arithmatex">\[ x(n)\ast h(n) = x(n)\circledast h(n) = \mathbf{IDFT}_N[X(k)\cdot H(k)] \]</div>
+<p>这样我们就可以充分利用FFT的速度了。</p>
+<p>首先我们将<span class="arithmatex">\(x(n),h(n)\)</span>补零到长度都为<span class="arithmatex">\(N\)</span>，然后分别计算它们的<span class="arithmatex">\(N\)</span>点FFT，逐位置相乘后再计算<span class="arithmatex">\(N\)</span>点IFFT即可得到圆卷积列表，也就是想要求得的线卷积。</p>
+<p>整个过程相当于三次<span class="arithmatex">\(N\)</span>点FFT再加上<span class="arithmatex">\(N\)</span>次乘法，总乘法数量为<span class="arithmatex">\(N+1.5N\log_2N\)</span>。这个算法在两个序列的长度相近且较大时有明显优势，但是若点数较少或某一个序列的点数较少时甚至会适得其反。</p>
+<h2 id="_2">改进方法</h2>
+<p>若要充分利用FFT的优势，我们需要尽量保持两个序列的长度相近。但是实际应用中，原信号序列可能很长，卷积核则相对较短。我们可以通过下面两种方式，手动“分割”较长的信号，来优化卷积的求解：</p>
+<h3 id="_3">重叠相加法</h3>
+<p>我们直接将较长的<span class="arithmatex">\(x(n)\)</span>分割为<span class="arithmatex">\(K\)</span>段长<span class="arithmatex">\(L\)</span>的序列，使<span class="arithmatex">\(x(n)=\sum_{i=0}^{K-1}x_i(n)\)</span>。由于卷积的线性性质，总卷积即为各段分别卷积之和：</p>
+<div class="arithmatex">\[ y(n) = \sum_{i=0}^{K-1}[h(n)\ast x_i(n)] \]</div>
+<p>这个方法在分段时不重叠，进行卷积的时候也不重叠，在最后相加的时候会发生重叠相加。</p>
+<h3 id="_4">重叠保留法</h3>
+<p>设<span class="arithmatex">\(h(n)\)</span>的长度为<span class="arithmatex">\(M\)</span>。我们也可以将<span class="arithmatex">\(x(n)\)</span>分为长<span class="arithmatex">\(N\)</span>但是重叠<span class="arithmatex">\(M-1\)</span>个点的多段<span class="arithmatex">\(x_i(n)\)</span>。然后求每一段的<strong>圆卷积</strong>。不过这一次我们直接将分段卷积的前<span class="arithmatex">\(M-1\)</span>个点去掉，然后直接拼接即可得到原卷积。</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../lecture-10/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 10" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 10
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-12/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 12" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 12
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2022 Chenxi Xu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,861 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="@xsun2001">
+      
+      
+        <link rel="canonical" href="https://xsun.io/MyNotes/001-SignalProcessing/lecture-01/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Lecture 1 - xsun2001's note collection</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="xsun2001&#39;s note collection" class="md-header__button md-logo" aria-label="xsun2001's note collection" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            xsun2001's note collection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xsun2001/MyNotes/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="xsun2001&#39;s note collection" class="md-nav__button md-logo" aria-label="xsun2001's note collection" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    xsun2001's note collection
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xsun2001/MyNotes/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          001 SignalProcessing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="001 SignalProcessing" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          001 SignalProcessing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        001-SignalProcessing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    信号的表示
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    典型信号
+  </a>
+  
+    <nav class="md-nav" aria-label="典型信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sa" class="md-nav__link">
+    Sa函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    指数信号
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    信号的分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    信号的基本运算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    欧拉公式与复指数信号
+  </a>
+  
+    <nav class="md-nav" aria-label="欧拉公式与复指数信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    欧拉公式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    复指数信号
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    信号的表示
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    典型信号
+  </a>
+  
+    <nav class="md-nav" aria-label="典型信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sa" class="md-nav__link">
+    Sa函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    指数信号
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    信号的分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    信号的基本运算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    欧拉公式与复指数信号
+  </a>
+  
+    <nav class="md-nav" aria-label="欧拉公式与复指数信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    欧拉公式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    复指数信号
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/xsun2001/MyNotes/edit/master/docs/001-SignalProcessing/lecture-01.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="lecture-1">Lecture 1</h1>
+<h2 id="_1">信号的表示</h2>
+<ol>
+<li>数学表达式：一个或若干个自变量的函数或序列，如<span class="arithmatex">\(f(t)\)</span>、<span class="arithmatex">\(x(n)=e^{-n}\)</span>等</li>
+<li>波形图：<ol>
+<li>画出函数随自变量的变化关系，典型的如时域波形图</li>
+<li>频谱图等也是常用的表示信号的图像</li>
+</ol>
+</li>
+</ol>
+<h2 id="_2">典型信号</h2>
+<h3 id="sa">Sa函数</h3>
+<div class="arithmatex">\[ Sa(t) = \frac{\sin t}{t} \]</div>
+<p><img alt="SaFunction" src="../img/L1-01.png" /></p>
+<p>特点：</p>
+<ol>
+<li>偶函数</li>
+<li><span class="arithmatex">\(Sa(k\pi) = 0, k\in\mathbb{Z}\)</span></li>
+<li><span class="arithmatex">\(\int_{-\infty}^{+\infty}Sa(t)dt = \pi\)</span></li>
+<li><span class="arithmatex">\(\int_{0}^{+\infty}Sa(t)dt = \int_{-\infty}^{0}Sa(t)dt  = \frac{\pi}{2}\)</span></li>
+</ol>
+<details class="note">
+<summary>积分性质的证明</summary>
+<p>这个积分被称为<a href="https://en.wikipedia.org/wiki/Dirichlet_integral">Dirichlet integral</a>，已经有众多巧妙的计算方法，请参考<a href="https://math.stackexchange.com/questions/5248/evaluating-the-integral-int-0-infty-frac-sin-x-x-mathrm-dx-frac-pi">stackexchange</a>。这里选取最容易理解的二元积分方法。</p>
+<p>注意到：</p>
+<div class="arithmatex">\[\int_0^{+\infty} e^{-xy}\sin x dy = \frac{\sin x}{x}\]</div>
+<p>因此我们有：</p>
+<div class="arithmatex">\[ \int_{0}^{+\infty}Sa(x)dx = \int_{0}^{+\infty} \left(\int_0^{+\infty} e^{-xy}\sin x dy\right)dx \]</div>
+<p>交换积分顺序：</p>
+<div class="arithmatex">\[
+    \int_{0}^{+\infty} \left(\int_0^{+\infty} e^{-xy}\sin x dy\right)dx
+    =\int_{0}^{+\infty} \left(\int_0^{+\infty} e^{-xy}\sin x dx\right)dy
+\]</div>
+<p>由分部积分法：</p>
+<div class="arithmatex">\[\begin{align}
+    \int e^{-xy}\sin x dx &amp;= -e^{-xy}\cos x - y\int e^{-xy}\cos x dx \\
+    &amp;= -e^{-xy}\cos x - y\left(e^{-xy}\sin x+y\int e^{-xy}\sin xdx \right)
+\end{align}\]</div>
+<p>解得：</p>
+<div class="arithmatex">\[ \int e^{-xy}\sin x dx = \frac{-ye^{-xy}\sin x - e^{-xy}\cos x}{1+y^2} \]</div>
+<p>因此：</p>
+<div class="arithmatex">\[ \int_0^{+\infty} e^{-xy}\sin x dx = \frac{1}{1+y^2} \]</div>
+<p>最后：</p>
+<div class="arithmatex">\[ \int_{0}^{+\infty}Sa(x)dx = \int_0^{+\infty}\frac{1}{1+y^2}dy = \arctan y |_0^{+\infty} = \frac{\pi}{2} \]</div>
+</details>
+<h3 id="_3">指数信号</h3>
+<div class="arithmatex">\[ f(t) = Ke^{\alpha t} \]</div>
+<h2 id="_4">信号的分类</h2>
+<ol>
+<li>按分布性质<ul>
+<li>确定性信号</li>
+<li>随机性信号</li>
+</ul>
+</li>
+<li>连续性<ul>
+<li>连续时间信号(Continuous-Time Signal)</li>
+<li>离散时间信号(Discrete-Time Signal)</li>
+</ul>
+</li>
+<li>因果性<ul>
+<li>因果信号：<span class="arithmatex">\(t&lt;0\Rightarrow x(t)=0\)</span></li>
+<li>非因果信号</li>
+<li>反因果信号：<span class="arithmatex">\(t&gt;0\Rightarrow x(t)=0\)</span></li>
+</ul>
+</li>
+<li>周期性</li>
+<li>实值信号与复值信号</li>
+</ol>
+<h2 id="_5">信号的基本运算</h2>
+<ol>
+<li>普通四则运算</li>
+<li>波形变化<ol>
+<li>时移运算：<span class="arithmatex">\(f(t-a)\)</span></li>
+<li>压扩运算：<span class="arithmatex">\(f(kt)\)</span></li>
+<li>反褶运算：<span class="arithmatex">\(f(-t)\)</span></li>
+</ol>
+</li>
+<li>积分与微分</li>
+<li>能量与功率<ol>
+<li>瞬时功率：<span class="arithmatex">\(||f(t)||^2\)</span></li>
+<li>能量：<ol>
+<li>连续：<span class="arithmatex">\(E[f(t)]=\int_{-\infty}^{+\infty} ||f(t)||^2 dt\)</span></li>
+<li>离散：<span class="arithmatex">\(E[x(n)]=\sum_{n=-\infty}^{+\infty} ||x(n)||^2\)</span></li>
+</ol>
+</li>
+<li>平均功率：<ol>
+<li>连续：<span class="arithmatex">\(P[f(t)]=\lim_{T\to \infty}\frac{1}{T}\int_{-T/2}^{+T/2} ||f(t)||^2 dt\)</span></li>
+<li>离散：<span class="arithmatex">\(P[x(n)]=\lim_{N\to \infty}\frac{1}{2N+1}\sum_{n=-N}^{N} ||x(n)||^2\)</span></li>
+</ol>
+</li>
+<li>据此也可分类信号<ol>
+<li>能量信号：均收敛</li>
+<li>功率信号：无穷能量+有限功率</li>
+<li>非能非功信号：均不收敛</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>卷积（在下一讲）</li>
+</ol>
+<h2 id="_6">欧拉公式与复指数信号</h2>
+<h3 id="_7">欧拉公式</h3>
+<div class="arithmatex">\[ e^{ix}=\cos x + i\cdot\sin x \]</div>
+<details class="note">
+<summary>欧拉公式的证明</summary>
+<p>这个著名的公式也有相当多的证明方法。课件上列举了两种，而且课后作业正是让我们找到第三种方法。参考<a href="https://en.wikipedia.org/wiki/Euler%27s_formula">维基百科</a>来获得更多信息，这里列举上面的第一种方法。</p>
+<p>考虑函数</p>
+<div class="arithmatex">\[ f(\theta) = \frac{\cos\theta + i\sin\theta}{e^{i\theta}} = e^{-i\theta}(\cos\theta + i\sin\theta) \]</div>
+<p>若要证明欧拉公式，只需要证明函数<span class="arithmatex">\(f(\theta)\)</span>恒为1。</p>
+<p>将其微分，可得：</p>
+<div class="arithmatex">\[ f'(\theta) = e^{-i\theta}(i\cos\theta - \sin\theta) - ie^{-i\theta}(\cos\theta + i\sin\theta) = 0 \]</div>
+<p>而又恰好<span class="arithmatex">\( f(0) = 1 \)</span>。因此</p>
+<div class="arithmatex">\[ f(\theta) = \frac{\cos\theta + i\sin\theta}{e^{i\theta}} \equiv 1 \]</div>
+<div class="arithmatex">\[ e^{ix}=\cos x + i\cdot\sin x \]</div>
+</details>
+<h3 id="_8">复指数信号</h3>
+<div class="arithmatex">\[ f(t) = Ke^{st} \]</div>
+<p>其中<span class="arithmatex">\(s\)</span>为复数，可以写为<span class="arithmatex">\(s=\sigma+i\omega, \sigma,\omega\in\mathbb{R}\)</span>。根据欧拉公式，我们有：</p>
+<div class="arithmatex">\[ f(t) = Ke^{\sigma t}\cdot(\cos\omega t+i\sin\omega t) \]</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: 001-SignalProcessing" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              001-SignalProcessing
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-02/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 2" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2022 Chenxi Xu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
