@@ -1,6 +1,10 @@
-site_name: 001-SignalProcessing
+site_name: xsun2001's note collection 
 theme:
     name: material
+site_url: https://xsun.io/MyNotes
+repo_url: https://github.com/xsun2001/MyNotes
+site_author: "@xsun2001"
+copyright: "© 2022 Chenxi Xu"
 
 markdown_extensions:
     - pymdownx.extra
